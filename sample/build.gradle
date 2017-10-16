@@ -16,7 +16,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionName project.VERSION_NAME
         versionCode Integer.parseInt(project.VERSION_CODE)
-        resValue "string", "API_KEY", getGooglePlayServicesApiKey()
+        resValue "string", "API_KEY", "getGooglePlayServicesApiKey()"
     }
 
     compileOptions {
