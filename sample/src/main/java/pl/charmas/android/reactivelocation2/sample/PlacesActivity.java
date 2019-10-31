@@ -11,10 +11,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.android.gms.location.places.AutocompletePrediction;
-import com.google.android.gms.location.places.AutocompletePredictionBufferResponse;
-import com.google.android.gms.location.places.PlaceLikelihood;
-import com.google.android.gms.location.places.PlaceLikelihoodBufferResponse;
+import com.google.android.libraries.places.compat.AutocompletePrediction;
+import com.google.android.libraries.places.compat.AutocompletePredictionBufferResponse;
+import com.google.android.libraries.places.compat.PlaceLikelihood;
+import com.google.android.libraries.places.compat.PlaceLikelihoodBufferResponse;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
@@ -65,7 +65,7 @@ public class PlacesActivity extends BaseActivity {
     @Override
     protected void onLocationPermissionGranted() {
         compositeDisposable = new CompositeDisposable();
-        compositeDisposable.add(
+      /*  compositeDisposable.add(
                 reactiveLocationProvider.getCurrentPlace(null)
                         .subscribe(new Consumer<PlaceLikelihoodBufferResponse>() {
                             @Override
@@ -82,7 +82,7 @@ public class PlacesActivity extends BaseActivity {
                                 Log.e("PlacesActivity", "Error in observable", throwable);
                             }
                         })
-        );
+        );*/
 
         Observable<String> queryObservable = RxTextView
                 .textChanges(queryView)
