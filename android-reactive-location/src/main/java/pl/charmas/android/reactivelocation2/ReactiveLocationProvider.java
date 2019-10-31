@@ -14,13 +14,13 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
-import com.google.android.gms.location.places.AutocompleteFilter;
-import com.google.android.gms.location.places.AutocompletePredictionBufferResponse;
-import com.google.android.gms.location.places.PlaceBufferResponse;
-import com.google.android.gms.location.places.PlaceFilter;
-import com.google.android.gms.location.places.PlaceLikelihoodBufferResponse;
-import com.google.android.gms.location.places.PlacePhotoMetadataResponse;
-import com.google.android.gms.location.places.Places;
+import com.google.android.libraries.places.compat.AutocompleteFilter;
+import com.google.android.libraries.places.compat.AutocompletePredictionBufferResponse;
+import com.google.android.libraries.places.compat.PlaceBufferResponse;
+import com.google.android.libraries.places.compat.PlaceFilter;
+import com.google.android.libraries.places.compat.PlaceLikelihoodBufferResponse;
+import com.google.android.libraries.places.compat.PlacePhotoMetadataResponse;
+import com.google.android.libraries.places.compat.Places;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.tasks.Task;
 
@@ -29,6 +29,7 @@ import java.util.Locale;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
+
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.Single;
@@ -319,7 +320,7 @@ public class ReactiveLocationProvider {
 
     /**
      * Returns single that fetches current place from Places API.
-     * To handle {@link com.google.android.gms.location.places.PlaceLikelihoodBufferResponse} you can use
+     * To handle {@link com.google.android.libraries.places.compat.PlaceLikelihoodBufferResponse} you can use
      * {@link DataBufferObservable}.
      *
      * @param placeFilter filter
@@ -327,26 +328,24 @@ public class ReactiveLocationProvider {
      */
     @RequiresPermission("android.permission.ACCESS_FINE_LOCATION")
     public Single<PlaceLikelihoodBufferResponse> getCurrentPlace(@Nullable final PlaceFilter placeFilter) {
-        return connectGoogleApiClient(Places.PLACE_DETECTION_API, Places.GEO_DATA_API)
-                .andThen(fromTask(Places.getPlaceDetectionClient(ctx.getContext()).getCurrentPlace(placeFilter)));
+        return fromTask(Places.getPlaceDetectionClient(ctx.getContext()).getCurrentPlace(placeFilter));
     }
 
     /**
      * Returns single that fetches a place from the Places API using the place ID.
-     * To handle {@link com.google.android.gms.location.places.PlaceBufferResponse} you can use
+     * To handle {@link com.google.android.libraries.places.compat.PlaceBufferResponse} you can use
      * {@link DataBufferObservable}.
      *
      * @param placeId id for place
      * @return single that emits places buffer
      */
     public Single<PlaceBufferResponse> getPlaceById(@Nullable final String placeId) {
-        return connectGoogleApiClient(Places.PLACE_DETECTION_API, Places.GEO_DATA_API)
-                .andThen(fromTask(Places.getGeoDataClient(ctx.getContext()).getPlaceById(placeId)));
+        return fromTask(Places.getGeoDataClient(ctx.getContext()).getPlaceById(placeId));
     }
 
     /**
      * Returns single that fetches autocomplete predictions from Places API.
-     * To handle {@link com.google.android.gms.location.places.AutocompletePredictionBufferResponse} you can use
+     * To handle {@link com.google.android.libraries.places.compat.AutocompletePredictionBufferResponse} you can use
      * {@link DataBufferObservable}.
      *
      * @param query  search query
@@ -356,21 +355,19 @@ public class ReactiveLocationProvider {
      */
     public Single<AutocompletePredictionBufferResponse> getPlaceAutocompletePredictions(final String query, final LatLngBounds bounds, final
     AutocompleteFilter filter) {
-        return connectGoogleApiClient(Places.PLACE_DETECTION_API, Places.GEO_DATA_API)
-                .andThen(fromTask(Places.getGeoDataClient(ctx.getContext()).getAutocompletePredictions(query, bounds, filter)));
+        return fromTask(Places.getGeoDataClient(ctx.getContext()).getAutocompletePredictions(query, bounds, filter));
     }
 
     /**
      * Returns single that fetches photo metadata from the Places API using the place ID.
-     * To handle {@link com.google.android.gms.location.places.PlacePhotoMetadataResponse} you can use
+     * To handle {@link com.google.android.libraries.places.compat.PlacePhotoMetadataResponse} you can use
      * {@link DataBufferObservable}.
      *
      * @param placeId id for place
      * @return single that emits metadata buffer
      */
     public Single<PlacePhotoMetadataResponse> getPhotoMetadataById(final String placeId) {
-        return connectGoogleApiClient(Places.PLACE_DETECTION_API, Places.GEO_DATA_API)
-                .andThen(fromTask(Places.getGeoDataClient(ctx.getContext()).getPlacePhotos(placeId)));
+        return fromTask(Places.getGeoDataClient(ctx.getContext()).getPlacePhotos(placeId));
     }
 
     /**

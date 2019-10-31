@@ -7,6 +7,7 @@ import android.os.Handler;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.Api;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.libraries.places.compat.Places;
 
 import java.util.Arrays;
 import java.util.List;
