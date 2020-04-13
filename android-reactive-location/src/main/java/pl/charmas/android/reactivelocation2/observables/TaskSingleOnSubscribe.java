@@ -5,8 +5,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
-import io.reactivex.SingleEmitter;
-import io.reactivex.SingleOnSubscribe;
+import io.reactivex.rxjava3.core.SingleEmitter;
+import io.reactivex.rxjava3.core.SingleOnSubscribe;
+
 
 public class TaskSingleOnSubscribe<T extends Response> implements SingleOnSubscribe<T> {
     private final Task<T> task;
@@ -17,19 +18,13 @@ public class TaskSingleOnSubscribe<T extends Response> implements SingleOnSubscr
 
     @Override
     public void subscribe(final SingleEmitter<T> emitter) {
-        task.addOnSuccessListener(new OnSuccessListener<T>() {
-            @Override
-            public void onSuccess(T t) {
-                if (!emitter.isDisposed()) {
-                    emitter.onSuccess(t);
-                }
+        task.addOnSuccessListener(t -> {
+            if (!emitter.isDisposed()) {
+                emitter.onSuccess(t);
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(Exception exception) {
-                if (!emitter.isDisposed()) {
-                    emitter.onError(exception);
-                }
+        }).addOnFailureListener(exception -> {
+            if (!emitter.isDisposed()) {
+                emitter.onError(exception);
             }
         });
     }

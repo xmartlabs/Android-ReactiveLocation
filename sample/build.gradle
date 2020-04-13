@@ -19,10 +19,6 @@ android {
         multiDexEnabled true
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
-    }
     buildTypes {
         release {
             minifyEnabled false
@@ -32,13 +28,19 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+    implementation 'com.github.niklasvd96:RxPermissions:0.11.2'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.google.android.libraries.places:places-compat:2.2.0'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation project(':android-reactive-location')
 }

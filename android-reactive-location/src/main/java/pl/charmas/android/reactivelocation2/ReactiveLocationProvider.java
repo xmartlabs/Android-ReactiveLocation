@@ -30,9 +30,9 @@ import java.util.Locale;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
 
-import io.reactivex.Completable;
-import io.reactivex.Observable;
-import io.reactivex.Single;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import pl.charmas.android.reactivelocation2.observables.GoogleAPIClientObservableOnSubscribe;
 import pl.charmas.android.reactivelocation2.observables.ObservableContext;
 import pl.charmas.android.reactivelocation2.observables.ObservableFactory;
@@ -98,7 +98,7 @@ public class ReactiveLocationProvider {
      * Single can report {@link pl.charmas.android.reactivelocation2.observables.GoogleAPIConnectionException}
      * when there are trouble connecting with Google Play Services and other exceptions that can be thrown by the api.
      * <p/>
-     * Everything is delivered by {@link io.reactivex.Observer#onError(Throwable)}.
+     * Everything is delivered by {@link io.reactivex.rxjava3.core.Observer#onError(Throwable)}.
      *
      * @return single that serves last know location
      */
@@ -117,7 +117,7 @@ public class ReactiveLocationProvider {
      * Observable can report {@link pl.charmas.android.reactivelocation2.observables.GoogleAPIConnectionException}
      * when there are trouble connecting with Google Play Services and other exceptions that can be thrown by the api.
      * <p/>
-     * Everything is delivered by {@link io.reactivex.Observer#onError(Throwable)}.
+     * Everything is delivered by {@link io.reactivex.rxjava3.core.Observer#onError(Throwable)}.
      *
      * @param locationRequest request object with info about what kind of location you need
      * @return observable that serves infinite stream of location updates
@@ -141,7 +141,7 @@ public class ReactiveLocationProvider {
      * <p/>
      * In case of any issue error is delivered.
      * <p/>
-     * Every exception is delivered by {@link io.reactivex.Observer#onError(Throwable)}.
+     * Every exception is delivered by {@link io.reactivex.rxjava3.core.Observer#onError(Throwable)}.
      *
      * @param sourceLocationObservable observable that emits {@link android.location.Location} instances suitable to use as mock locations
      * @return completable that waits until location observable completes
@@ -256,7 +256,7 @@ public class ReactiveLocationProvider {
      * <p/>
      * In case of any issue error is delivered.
      * <p/>
-     * Every exception is delivered by {@link io.reactivex.CompletableObserver#onError(Throwable)}.
+     * Every exception is delivered by {@link io.reactivex.rxjava3.core.CompletableObserver#onError(Throwable)}.
      *
      * @param geofenceTransitionPendingIntent pending intent to register on geofence transition
      * @param request                         list of request to add
@@ -272,7 +272,7 @@ public class ReactiveLocationProvider {
      * <p/>
      * In case of any issue error is delivered.
      * <p/>
-     * Every exception is delivered by {@link io.reactivex.CompletableObserver#onError(Throwable)}.
+     * Every exception is delivered by {@link io.reactivex.rxjava3.core.CompletableObserver#onError(Throwable)}.
      *
      * @param pendingIntent key of registered geofences
      * @return completable that removed geofences
@@ -286,7 +286,7 @@ public class ReactiveLocationProvider {
      * <p/>
      * In case of any issue error is delivered.
      * <p/>
-     * Every exception is delivered by {@link io.reactivex.CompletableObserver#onError(Throwable)}.
+     * Every exception is delivered by {@link io.reactivex.rxjava3.core.CompletableObserver#onError(Throwable)}.
      *
      * @param requestIds geofences to remove
      * @return completable that removed geofences

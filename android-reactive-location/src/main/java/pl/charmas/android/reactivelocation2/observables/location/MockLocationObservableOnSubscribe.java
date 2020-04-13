@@ -5,11 +5,9 @@ import android.location.Location;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.disposables.Disposable;
 import pl.charmas.android.reactivelocation2.BaseFailureListener;
 import pl.charmas.android.reactivelocation2.observables.ObservableContext;
 import pl.charmas.android.reactivelocation2.observables.ObservableFactory;
@@ -34,37 +32,18 @@ public class MockLocationObservableOnSubscribe extends BaseLocationObservableOnS
                                                  final ObservableEmitter<? super Void> emitter) {
         fusedLocationProviderClient = locationProviderClient;
         locationProviderClient.setMockMode(true)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        startLocationMocking(locationProviderClient, emitter);
-                    }
-                })
+                .addOnSuccessListener(aVoid -> startLocationMocking(locationProviderClient, emitter))
                 .addOnFailureListener(new BaseFailureListener<>(emitter));
     }
 
     private void startLocationMocking(final FusedLocationProviderClient locationProviderClient, final ObservableEmitter<? super Void> emitter) {
         mockLocationSubscription = locationObservable
-                .subscribe(new Consumer<Location>() {
-                               @Override
-                               public void accept(Location location) {
-                                   locationProviderClient.setMockLocation(location)
-                                           .addOnFailureListener(new BaseFailureListener<>(emitter));
-                               }
-                           },
-
-                        new Consumer<Throwable>() {
-                            @Override
-                            public void accept(Throwable throwable) {
-                                emitter.onError(throwable);
-                            }
-
-                        }, new Action() {
-                            @Override
-                            public void run() {
-                                emitter.onComplete();
-                            }
-                        });
+                .subscribe(
+                        location -> locationProviderClient.setMockLocation(location)
+                                .addOnFailureListener(new BaseFailureListener<>(emitter)),
+                        emitter::onError,
+                        emitter::onComplete
+                );
 
     }
 
