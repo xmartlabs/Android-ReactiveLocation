@@ -20,13 +20,13 @@ import com.google.android.gms.location.LocationSettingsStates;
 
 import java.util.List;
 
-import io.reactivex.Observable;
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import pl.charmas.android.reactivelocation2.ReactiveLocationProvider;
 import pl.charmas.android.reactivelocation2.ReactiveLocationProviderConfiguration;
 import pl.charmas.android.reactivelocation2.sample.utils.AddressToStringFunc;
@@ -34,8 +34,6 @@ import pl.charmas.android.reactivelocation2.sample.utils.DetectedActivityToStrin
 import pl.charmas.android.reactivelocation2.sample.utils.DisplayTextOnViewAction;
 import pl.charmas.android.reactivelocation2.sample.utils.LocationToStringFunc;
 import pl.charmas.android.reactivelocation2.sample.utils.ToMostProbableActivity;
-
-import static pl.charmas.android.reactivelocation2.sample.utils.UnsubscribeIfPresent.dispose;
 
 public class MainActivity extends BaseActivity {
     private final static int REQUEST_CHECK_SETTINGS = 0;
@@ -73,8 +71,7 @@ public class MainActivity extends BaseActivity {
                 .build()
         );
 
-        lastKnownLocationObservable = locationProvider
-                .getLastKnownLocation()
+        lastKnownLocationObservable = locationProvider.getLastKnownLocation()
                 .observeOn(AndroidSchedulers.mainThread());
 
         final LocationRequest locationRequest = LocationRequest.create()
@@ -161,10 +158,10 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        dispose(updatableLocationDisposable);
-        dispose(addressDisposable);
-        dispose(lastKnownLocationDisposable);
-        dispose(activityDisposable);
+        updatableLocationDisposable.dispose();
+        addressDisposable.dispose();
+        lastKnownLocationDisposable.dispose();
+        activityDisposable.dispose();
     }
 
     @Override
@@ -207,6 +204,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         final LocationSettingsStates states = LocationSettingsStates.fromIntent(data);//intent);
         switch (requestCode) {
             case REQUEST_CHECK_SETTINGS:

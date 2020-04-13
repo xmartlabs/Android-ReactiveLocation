@@ -22,15 +22,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Maybe;
-import io.reactivex.MaybeSource;
-import io.reactivex.Observable;
-import io.reactivex.Single;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.BiFunction;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.functions.Predicate;
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.core.MaybeSource;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.functions.BiFunction;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.functions.Predicate;
 import pl.charmas.android.reactivelocation2.ReactiveLocationProvider;
 import pl.charmas.android.reactivelocation2.sample.utils.RxTextView;
 
@@ -139,7 +139,7 @@ public class PlacesActivity extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        dispose(compositeDisposable);
+        compositeDisposable.dispose();
     }
 
     private static class QueryWithCurrentLocation {

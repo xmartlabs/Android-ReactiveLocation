@@ -13,13 +13,9 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingRequest;
 
-import io.reactivex.CompletableObserver;
-import io.reactivex.CompletableSource;
-import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Action;
+import io.reactivex.rxjava3.functions.Consumer;
 import pl.charmas.android.reactivelocation2.ReactiveLocationProvider;
 import pl.charmas.android.reactivelocation2.sample.utils.DisplayTextOnViewAction;
 import pl.charmas.android.reactivelocation2.sample.utils.LocationToStringFunc;

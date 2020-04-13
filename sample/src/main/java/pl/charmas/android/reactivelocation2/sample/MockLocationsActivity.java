@@ -20,12 +20,13 @@ import com.google.android.gms.location.LocationRequest;
 import java.util.Date;
 
 import androidx.core.app.ActivityCompat;
-import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.subjects.PublishSubject;
+
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Action;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 import pl.charmas.android.reactivelocation2.ReactiveLocationProvider;
 import pl.charmas.android.reactivelocation2.sample.utils.DisplayTextOnViewAction;
 import pl.charmas.android.reactivelocation2.sample.utils.LocationToStringFunc;
@@ -177,8 +178,8 @@ public class MockLocationsActivity extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        dispose(mockLocationDisposable);
-        dispose(updatedLocationDisposable);
+        mockLocationDisposable.dispose();
+        updatedLocationDisposable.dispose();
     }
 
     private class ErrorHandler implements Consumer<Throwable> {

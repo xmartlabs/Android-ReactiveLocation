@@ -9,8 +9,9 @@ import com.google.android.libraries.places.compat.Place;
 import com.google.android.libraries.places.compat.PlaceBufferResponse;
 
 import androidx.annotation.NonNull;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
+
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.functions.Consumer;
 import pl.charmas.android.reactivelocation2.ReactiveLocationProvider;
 
 import static pl.charmas.android.reactivelocation2.sample.utils.UnsubscribeIfPresent.dispose;

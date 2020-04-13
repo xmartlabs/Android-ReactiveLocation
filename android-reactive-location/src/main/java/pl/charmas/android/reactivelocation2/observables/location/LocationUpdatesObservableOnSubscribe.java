@@ -11,8 +11,8 @@ import com.google.android.gms.tasks.Task;
 
 import java.lang.ref.WeakReference;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
 import pl.charmas.android.reactivelocation2.BaseFailureListener;
 import pl.charmas.android.reactivelocation2.LocationNotAvailableException;
 import pl.charmas.android.reactivelocation2.observables.ObservableContext;

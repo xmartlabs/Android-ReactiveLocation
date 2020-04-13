@@ -11,9 +11,10 @@ import java.util.List;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
+
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
 import pl.charmas.android.reactivelocation2.observables.ObservableFactory;
 
 public class GeocodeObservable implements ObservableOnSubscribe<List<Address>> {

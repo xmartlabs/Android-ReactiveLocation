@@ -5,8 +5,8 @@ import android.location.Location;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
 import pl.charmas.android.reactivelocation2.BaseFailureListener;
 import pl.charmas.android.reactivelocation2.observables.ObservableContext;
 import pl.charmas.android.reactivelocation2.observables.ObservableFactory;

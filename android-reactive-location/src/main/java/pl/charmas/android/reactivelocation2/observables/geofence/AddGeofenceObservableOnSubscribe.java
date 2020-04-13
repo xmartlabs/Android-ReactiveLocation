@@ -6,8 +6,8 @@ import com.google.android.gms.location.GeofencingClient;
 import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
 import pl.charmas.android.reactivelocation2.BaseFailureListener;
 import pl.charmas.android.reactivelocation2.observables.ObservableContext;
 import pl.charmas.android.reactivelocation2.observables.ObservableFactory;
@@ -32,12 +32,7 @@ public class AddGeofenceObservableOnSubscribe extends BaseGeofencingObservableOn
     @Override
     protected void onGeofencingClientReady(GeofencingClient geofencingClient, final ObservableEmitter<? super Void> emitter) {
         geofencingClient.addGeofences(request, geofenceTransitionPendingIntent)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        emitter.onComplete();
-                    }
-                })
+                .addOnSuccessListener(aVoid -> emitter.onComplete())
                 .addOnFailureListener(new BaseFailureListener<>(emitter));
     }
 

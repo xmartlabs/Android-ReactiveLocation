@@ -3,7 +3,8 @@ package pl.charmas.android.reactivelocation2;
 import com.google.android.gms.tasks.OnFailureListener;
 
 import androidx.annotation.NonNull;
-import io.reactivex.ObservableEmitter;
+
+import io.reactivex.rxjava3.core.ObservableEmitter;
 
 public class BaseFailureListener<T> implements OnFailureListener {
 

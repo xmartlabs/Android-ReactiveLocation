@@ -13,10 +13,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.disposables.Disposables;
-import io.reactivex.functions.Action;
+
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 
 public abstract class BaseObservableOnSubscribe<T> implements ObservableOnSubscribe<T> {
@@ -42,12 +42,9 @@ public abstract class BaseObservableOnSubscribe<T> implements ObservableOnSubscr
             }
         }
 
-        emitter.setDisposable(Disposables.fromAction(new Action() {
-            @Override
-            public void run() throws Exception {
-                onDisposed();
-                apiClient.disconnect();
-            }
+        emitter.setDisposable(Disposable.fromAction(() -> {
+            onDisposed();
+            apiClient.disconnect();
         }));
     }
 

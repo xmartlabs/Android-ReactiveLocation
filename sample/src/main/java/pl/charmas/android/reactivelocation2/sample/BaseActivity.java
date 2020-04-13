@@ -4,9 +4,11 @@ import android.Manifest;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.tbruyelle.rxpermissions2.RxPermissions;
 
-import io.reactivex.functions.Consumer;
+import com.tbruyelle.rxpermissions3.RxPermissions;
+
+import io.reactivex.rxjava3.functions.Consumer;
+
 
 public abstract class BaseActivity extends AppCompatActivity {
 
